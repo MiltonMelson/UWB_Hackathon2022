@@ -8,3 +8,7 @@ p {
    text-align: center;
    justify-content: center;
 }
+
+body {
+   background: black;
+}
