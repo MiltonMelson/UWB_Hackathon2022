@@ -1,5 +1,18 @@
+body {
+  background-image: url(https://www.teahub.io/photos/full/107-1075167_old-paper-background-psd.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
 p {
   margin: 10px 0 !important;
+  font-size: large;
+}
+
+tbody {
+  font-size: medium;
+  font-family: bold;
 }
 
 .login-container {
