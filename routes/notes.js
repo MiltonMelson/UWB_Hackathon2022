@@ -4,20 +4,20 @@ const { request } = require('http')
 const router = express.Router()
 const { ensureAuth } = require('../middleware/auth')
 
-const Story = require('../models/Story')
+const Note = require('../models/Note')
 
 // @desc    Show add page
-// @route   GET /stories/add 
+// @route   GET /notes/add 
 router.get('/add', ensureAuth, (req, res) => {
-    res.render('stories/add')
+    res.render('notes/add')
 })
 
 // @desc    Process add form
-// @route   POST /stories 
+// @route   POST /notes 
 router.post('/', ensureAuth, async (req, res) => {
     try {
         req.body.user = req.user.id
-        await Story.create(req.body)
+        await Note.create(req.body)
         res.redirect('/dashboard')
     } catch (error) {
         console.error(error)
@@ -25,16 +25,16 @@ router.post('/', ensureAuth, async (req, res) => {
     }
 })
 
-// @desc    Show all stories
-// @route   GET /stories
+// @desc    Show all notes
+// @route   GET /notes
 router.get('/', ensureAuth, async (req, res) => {
     try {
-        const stories = await Story.find({ status: 'public' })
+        const notes = await Note.find({ status: 'public' })
             .populate('user')
             .sort({ createdAt: 'desc' })
             .lean()
-        res.render('stories/index', {
-            stories,
+        res.render('notes/index', {
+            notes,
         })
     } catch (err) {
         console.log(err)
@@ -42,19 +42,19 @@ router.get('/', ensureAuth, async (req, res) => {
     }
 })
 
-// @desc    Show single story
-// @route   GET /stories/:id 
+// @desc    Show single note
+// @route   GET /notes/:id 
 router.get('/:id', ensureAuth, async (req, res) => {
     try {
-        let story = await Story.findById(req.params.id)
+        let note = await Note.findById(req.params.id)
             .populate('user')
             .lean()
-        if(!story) {
+        if(!note) {
             return res.render('error/404')
         }
 
-        res.render('stories/show', {
-            story
+        res.render('notes/show', {
+            note
         })
     } catch (err) {
         console.error(err)
@@ -63,22 +63,22 @@ router.get('/:id', ensureAuth, async (req, res) => {
 })
 
 // @desc    Show edit page
-// @route   GET /stories/edit/:id 
+// @route   GET /notes/edit/:id 
 router.get('/edit/:id', ensureAuth, async (req, res) => {
     try {
-        const story = await Story.findOne({
+        const note = await Note.findOne({
             _id: req.params.id
         }).lean()
     
-        if(!story) {
+        if(!note) {
             return res.render('error/404')
         } 
     
-        if(story.user != req.user.id) {
-            res.redirect('/stories')
+        if(note.user != req.user.id) {
+            res.redirect('/notes')
         } else {
-            res.render('stories/edit', {
-                story
+            res.render('notes/edit', {
+                note
             })
         }
     } catch (error) {
@@ -89,20 +89,20 @@ router.get('/edit/:id', ensureAuth, async (req, res) => {
     
 })
 
-// @desc    Update story
-// @route   PUT /stories/:id 
+// @desc    Update note
+// @route   PUT /notes/:id 
 router.put('/:id', ensureAuth, async (req, res) => {
     try {
-        let story = await Story.findById(req.params.id).lean()
+        let note = await Note.findById(req.params.id).lean()
 
-        if (!story) {
+        if (!note) {
             return res.render('error/404')
         }
 
-        if(story.user != req.user.id) {
-            res.redirect('/stories')
+        if(note.user != req.user.id) {
+            res.redirect('/notes')
         } else {
-            story = await Story.findOneAndUpdate({ _id: req.params.id }, req.body, {
+            note = await Note.findOneAndUpdate({ _id: req.params.id }, req.body, {
                 new: true,
                 runValidators: true,
             })
@@ -114,11 +114,11 @@ router.put('/:id', ensureAuth, async (req, res) => {
     }  
 })
 
-// @desc    Delete Story
-// @route   DELETE /stories/:id 
+// @desc    Delete Note
+// @route   DELETE /notes/:id 
 router.delete('/:id', ensureAuth, async (req, res) => {
     try {
-        await Story.remove({ _id: req.params.id })
+        await Note.remove({ _id: req.params.id })
         res.redirect('/dashboard')
     } catch (err) {
         console.error(err)
@@ -126,19 +126,19 @@ router.delete('/:id', ensureAuth, async (req, res) => {
     }
 })
 
-// @desc    User stories
-// @route   GET /stories/:userId 
+// @desc    User notes
+// @route   GET /notes/:userId 
 router.get('/user/:userId', ensureAuth, async (req, res) => {
     try {
-        const stories = await Story.find({
+        const notes = await Note.find({
             user: req.params.userId,
             status: 'public'
         })
         .populate('user')
         .lean()
 
-        res.render('stories/index', {
-            stories
+        res.render('notes/index', {
+            notes
         })
     } catch (err) {
         console.error(err)
