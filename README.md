@@ -15,7 +15,7 @@ Run in Development:
 Run in Production:
   - npm start
   
-# Hosted website on the cloud
+# Try it out
 https://tranquil-bastion-78148.herokuapp.com/ 
 
 # Screenshots
