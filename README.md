@@ -6,14 +6,14 @@ The purpose of this app is to allow users to easily create notes during class an
 
 # Usage
 Install Dependencies:
-  npm i express mongoose connect-mongo express-session express-handlebars dotenv method-override moment morgan passport passport-google-oauth20
-  npm i -D nodemon cross-env
+  - npm i express mongoose connect-mongo express-session express-handlebars dotenv method-override moment morgan passport passport-google-oauth20
+  - npm i -D nodemon cross-env
   
 Run in Development:
-  npm run dev
+  - npm run dev
   
 Run in Production:
-  npm start
+  - npm start
   
 # Hosted website on the cloud
 https://tranquil-bastion-78148.herokuapp.com/ 
