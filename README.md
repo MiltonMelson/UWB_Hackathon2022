@@ -19,12 +19,13 @@ Run in Production:
 https://tranquil-bastion-78148.herokuapp.com/ 
 
 # Screenshots
+Login
 ![image](https://user-images.githubusercontent.com/77636982/168485281-3df4e3cf-9a59-466f-989f-17764c3d2558.png)
-
+Dashboard
 ![image](https://user-images.githubusercontent.com/77636982/168485369-535b9908-2844-4525-a834-5972e4cfd3eb.png)
-
+Public Notes
 ![image](https://user-images.githubusercontent.com/77636982/168485390-7df2783c-a582-4be6-903e-e84df1e7eb1e.png)
-
+Side-Nav
 ![image](https://user-images.githubusercontent.com/77636982/168485424-2c538597-864e-4cc4-9a2a-32ea1cab096c.png)
 
 
