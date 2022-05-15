@@ -2,7 +2,7 @@
 
 This app uses Node.js/Express/MongoDB with Google OAuth20 for authentication and Handlebars/Materialize for design. 
 
-The purpose of this app is to allow users to easily create notes during class and collaborate with other students who also use this app by setting your notes to public. You can also set notes to private so only yourself will be able to view them. 
+The purpose of this app is to allow users to easily create notes during class and collaborate with other students who also use this app by setting their notes to public. You can also set your notes to private so only yourself will be able to view them. 
 
 # Usage
 Install Dependencies:
